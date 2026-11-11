@@ -114,6 +114,15 @@ Para verificar todo el pipeline (MQTT, SQLite, gráficos en tiempo real, conmuta
 
 ---
 
+## 📜 Historial de Chat y Especificaciones del Proyecto
+
+- [Prompt Maestro Canónico de ARCEUS GRID](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/docs/chat_history/PROMPT_MAESTRO_ARCEUS_GRID.md)
+- [Transcripción Completa de la Sesión de Chat](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/docs/chat_history/CHAT_TRANSCRIPT.md)
+- [Log de Telemetría del Chat en JSONL](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/docs/chat_history/transcript.jsonl)
+
+
+---
+
 ## 🔧 Compilación y Flasheo del Firmware ESP32
 
 El proyecto incluye configuración para **PlatformIO**:

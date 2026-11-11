@@ -1,5 +1,12 @@
 # ⚡ ARCEUS GRID — Sistema Experimental de Monitoreo Eléctrico y AIoT
 
+[![CI](https://github.com/LNieto-V/arceus_grid/actions/workflows/ci.yml/badge.svg)](https://github.com/LNieto-V/arceus_grid/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python: 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![PlatformIO](https://img.shields.io/badge/PlatformIO-ESP32-orange.svg?logo=platformio)](https://platformio.org/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
 **ARCEUS GRID** es una plataforma de instrumentación inteligente de consumo eléctrico compuesta por dos estaciones independientes (Estación A y Estación B) basadas en **ESP32** y un **Coordinador Central** orquestado en Docker que integra comunicación MQTT, base de datos SQLite, detección de anomalías eléctricas, panel de control en Streamlit y **Aprendizaje Federado (Federated Learning mediante FedAvg)**.
 
 ---
@@ -127,3 +134,22 @@ El proyecto incluye configuración para **PlatformIO**:
   ```bash
   pio device monitor -b 115200
   ```
+
+---
+
+## 🌐 Publicación y Vinculación con GitHub
+
+Para vincular este repositorio local con tu cuenta de GitHub (`LNieto-V`):
+
+1. Crea un nuevo repositorio en [GitHub](https://github.com/new) con el nombre **`arceus_grid`** (dejarlo vacío, sin README inicial).
+2. Ejecuta en la terminal:
+   ```bash
+   ./scripts/publish_to_github.sh
+   ```
+   *O manualmente:*
+   ```bash
+   git remote add origin git@github.com:LNieto-V/arceus_grid.git
+   git branch -M main
+   git push -u origin main
+   ```
+

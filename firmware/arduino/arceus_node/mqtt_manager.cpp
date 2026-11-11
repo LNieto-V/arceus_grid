@@ -9,7 +9,12 @@ static void staticMqttCallback(char* topic, byte* payload, unsigned int length) 
 }
 
 MQTTManager::MQTTManager(RelayController& relays, PilotController& pilots)
-    : m_relays(relays), m_pilots(pilots), m_mqttClient(m_espClient), m_lastReconnectAttempt(0) {
+    : m_relays(relays),
+      m_pilots(pilots),
+      m_mqttClient(m_espClient),
+      m_lastWiFiAttempt(0),
+      m_lastMQTTAttempt(0),
+      m_wasWiFiConnected(false) {
     s_instance = this;
 }
 
@@ -17,14 +22,31 @@ void MQTTManager::begin() {
     m_mqttClient.setServer(MQTT_BROKER_IP, MQTT_BROKER_PORT);
     m_mqttClient.setCallback(staticMqttCallback);
     m_mqttClient.setBufferSize(512);
+
+    WiFi.mode(WIFI_STA);
+    WiFi.setAutoReconnect(true);
     reconnectWiFi();
 }
 
 void MQTTManager::reconnectWiFi() {
-    if (WiFi.status() == WL_CONNECTED) return;
+    if (WiFi.status() == WL_CONNECTED) {
+        if (!m_wasWiFiConnected) {
+            m_wasWiFiConnected = true;
+            Serial.printf("[WIFI] Conectado exitosamente. IP: %s\n", WiFi.localIP().toString().c_str());
+        }
+        return;
+    }
 
+    m_wasWiFiConnected = false;
+    unsigned long now = millis();
+    // Reintentar solo si han pasado al menos 10 segundos desde el último intento
+    if (m_lastWiFiAttempt != 0 && (now - m_lastWiFiAttempt < 10000)) {
+        return;
+    }
+
+    m_lastWiFiAttempt = now;
     Serial.printf("[WIFI] Conectando a %s...\n", WIFI_SSID);
-    WiFi.mode(WIFI_STA);
+    WiFi.disconnect();
     WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 }
 
@@ -37,8 +59,8 @@ void MQTTManager::reconnectMQTT() {
     if (m_mqttClient.connected()) return;
 
     unsigned long now = millis();
-    if (now - m_lastReconnectAttempt > 5000) {
-        m_lastReconnectAttempt = now;
+    if (m_lastMQTTAttempt == 0 || (now - m_lastMQTTAttempt > 5000)) {
+        m_lastMQTTAttempt = now;
         Serial.printf("[MQTT] Intentando conexion al broker %s:%d...\n", MQTT_BROKER_IP, MQTT_BROKER_PORT);
 
         String clientId = "ArceusNode_" + String(STATION_NAME) + "_" + String(random(0xffff), HEX);

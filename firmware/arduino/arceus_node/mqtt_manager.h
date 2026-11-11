@@ -27,5 +27,7 @@ private:
     PilotController& m_pilots;
     WiFiClient m_espClient;
     PubSubClient m_mqttClient;
-    unsigned long m_lastReconnectAttempt;
+    unsigned long m_lastWiFiAttempt;
+    unsigned long m_lastMQTTAttempt;
+    bool m_wasWiFiConnected;
 };

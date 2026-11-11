@@ -17,11 +17,11 @@ public:
     bool isConnected();
     bool publishTelemetry(const ElectricalMetrics& metrics, const char* status);
     bool publishAlert(const char* type, const char* message, const char* severity);
+    void handleIncomingCommand(char* topic, byte* payload, unsigned int length);
 
 private:
     void reconnectWiFi();
     void reconnectMQTT();
-    void handleIncomingCommand(char* topic, byte* payload, unsigned int length);
 
     RelayController& m_relays;
     PilotController& m_pilots;

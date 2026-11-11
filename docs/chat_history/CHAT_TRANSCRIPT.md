@@ -508,30 +508,30 @@ The user changed setting `Model Selection` from None to Gemini 3.8 Flash (High).
 
 Se ha diseñado e implementado la estructura completa del proyecto **ARCEUS GRID** en el directorio de trabajo:
 
-> 📂 **Ruta del Proyecto:** `/home/tensei/.gemini/antigravity/scratch/arceus_grid`  
+> 📂 **Ruta del Proyecto:** `/home/tensei/Proyectos/arceus_grid`  
 > *(Se recomienda establecer esta carpeta como su espacio de trabajo activo en el entorno).*
 
-El repositorio ha sido inicializado con control de versiones Git bajo el estándar **Conventional Commits**, incorporando un archivo [.gitignore](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/.gitignore) que excluye dependencias, artefactos de compilación de LaTeX/PlatformIO y bases de datos locales.
+El repositorio ha sido inicializado con control de versiones Git bajo el estándar **Conventional Commits**, incorporando un archivo [.gitignore](file:///home/tensei/Proyectos/arceus_grid/.gitignore) que excluye dependencias, artefactos de compilación de LaTeX/PlatformIO y bases de datos locales.
 
 ---
 
 ### 1. Arquitectura de Contenedores Docker
 
-La orquestación se gestiona mediante [docker-compose.yml](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/docker-compose.yml), el cual levanta tres servicios interconectados en una red puente (`arceus_net`):
+La orquestación se gestiona mediante [docker-compose.yml](file:///home/tensei/Proyectos/arceus_grid/docker-compose.yml), el cual levanta tres servicios interconectados en una red puente (`arceus_net`):
 
-1. **`mosquitto`**: Broker MQTT basado en [mosquitto/Dockerfile](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/mosquitto/Dockerfile) con configuración en [mosquitto.conf](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/mosquitto/config/mosquitto.conf). Expone el puerto `1883` para MQTT y `9001` para WebSockets, con persistencia montada en volumen.
-2. **`coordinator-collector`**: Daemon en Python ([main.py](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/main.py)) basado en [coordinator/Dockerfile](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/Dockerfile). Escucha la telemetría en `arceus/+/telemetry`, ejecuta la detección de anomalías y persiste las tramas en SQLite.
-3. **`coordinator-dashboard`**: Panel interactivo Streamlit ([app.py](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/dashboard/app.py)) en el puerto `8501`. Ofrece monitoreo en tiempo real con gráficos Plotly, conmutación remota de relés y orquestación visual de rondas de **Aprendizaje Federado (FedAvg)**.
+1. **`mosquitto`**: Broker MQTT basado en [mosquitto/Dockerfile](file:///home/tensei/Proyectos/arceus_grid/mosquitto/Dockerfile) con configuración en [mosquitto.conf](file:///home/tensei/Proyectos/arceus_grid/mosquitto/config/mosquitto.conf). Expone el puerto `1883` para MQTT y `9001` para WebSockets, con persistencia montada en volumen.
+2. **`coordinator-collector`**: Daemon en Python ([main.py](file:///home/tensei/Proyectos/arceus_grid/coordinator/main.py)) basado en [coordinator/Dockerfile](file:///home/tensei/Proyectos/arceus_grid/coordinator/Dockerfile). Escucha la telemetría en `arceus/+/telemetry`, ejecuta la detección de anomalías y persiste las tramas en SQLite.
+3. **`coordinator-dashboard`**: Panel interactivo Streamlit ([app.py](file:///home/tensei/Proyectos/arceus_grid/coordinator/dashboard/app.py)) en el puerto `8501`. Ofrece monitoreo en tiempo real con gráficos Plotly, conmutación remota de relés y orquestación visual de rondas de **Aprendizaje Federado (FedAvg)**.
 
 ---
 
 ### 2. Sistema Coordinador, Base de Datos e Inteligencia Artificial
 
-* **Base de Datos SQLite (`WAL Mode`):** Implementada en [`DatabaseManager`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/database/db_manager.py#L12-L175). Habilita *Write-Ahead Logging* para permitir escrituras continuas del recolector MQTT y lecturas simultáneas del dashboard sin bloqueo de base de datos. Almacena telemetría, auditoría de comandos, registro de alarmas y métricas de rondas federadas.
-* **Detector de Anomalías Dual:** En [`AnomalyDetector`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/ai/anomaly_detector.py#L10-L68), integra:
+* **Base de Datos SQLite (`WAL Mode`):** Implementada en [`DatabaseManager`](file:///home/tensei/Proyectos/arceus_grid/coordinator/database/db_manager.py#L12-L175). Habilita *Write-Ahead Logging* para permitir escrituras continuas del recolector MQTT y lecturas simultáneas del dashboard sin bloqueo de base de datos. Almacena telemetría, auditoría de comandos, registro de alarmas y métricas de rondas federadas.
+* **Detector de Anomalías Dual:** En [`AnomalyDetector`](file:///home/tensei/Proyectos/arceus_grid/coordinator/ai/anomaly_detector.py#L10-L68), integra:
   1. *Reglas físicas deterministas:* Subtensión ($V < 10.5\,\text{V}$), sobretensión ($V > 13.5\,\text{V}$), sobrecorriente ($I > 3.0\,\text{A}$), corriente de fuga con relés apagados ($I > 50\,\text{mA}$), circuito abierto/lámpara fundida ($I < 30\,\text{mA}$ con relé activo) e incoherencia de potencia ($|P - V \times I| > 1.2\,\text{W}$).
   2. *Scoring estadístico normalizado:* Basado en desviaciones Z sobre el bus.
-* **Aprendizaje Federado (FedAvg):** Diseñado en [`FederatedCoordinator`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/ai/federated_learning.py#L65-L165) y [`LocalModel`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/ai/federated_learning.py#L11-L63). Entrena modelos locales sobre las particiones de datos de cada estación y realiza la agregación canónica de parámetros:
+* **Aprendizaje Federado (FedAvg):** Diseñado en [`FederatedCoordinator`](file:///home/tensei/Proyectos/arceus_grid/coordinator/ai/federated_learning.py#L65-L165) y [`LocalModel`](file:///home/tensei/Proyectos/arceus_grid/coordinator/ai/federated_learning.py#L11-L63). Entrena modelos locales sobre las particiones de datos de cada estación y realiza la agregación canónica de parámetros:
   $$\theta_{global}^{(t+1)} = \sum_{k=1}^K \frac{n_k}{n} \theta_k^{(t)}$$
   Registrando la evolución del error cuadrático medio (MSE) y guardando los checkpoints de pesos en formato JSON.
 
@@ -539,18 +539,18 @@ La orquestación se gestiona mediante [docker-compose.yml](file:///home/tensei/.
 
 ### 3. Firmware Modular ESP32
 
-El firmware está estructurado para PlatformIO en [platformio.ini](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/platformio.ini):
+El firmware está estructurado para PlatformIO en [platformio.ini](file:///home/tensei/Proyectos/arceus_grid/firmware/platformio.ini):
 
 * **Firmware de Producción de Estaciones A y B:**
-  - [config.h](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/arceus_node/include/config.h): Definición de pines (I2C: 21/22, Relés: 25/26, Pilotos: 27/32/33), tópicos MQTT y credenciales.
-  - [`SensorINA219Manager`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/arceus_node/src/sensors_ina219.cpp#L3-L45): Adquisición de tensión de bus, corriente y potencia con compensación de offset.
-  - [`DisplayOLEDManager`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/arceus_node/src/display_oled.cpp#L3-L64): Renderizado en SSD1306 (128×64) de métricas eléctricas, estado de relés y alertas.
-  - [`RelayController`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/arceus_node/src/relays.cpp#L3-L36): Control no bloqueante con nivel activo en `LOW` y arranque en estado seguro (apagado).
-  - [`PilotController`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/arceus_node/src/pilots.cpp#L3-L64): Máquina de estados no bloqueante con `millis()` para intermitencias: *NORMAL* (Verde fijo), *WARNING* (Amarillo a 700 ms) y *DANGER* (Rojo rápido a 200 ms).
-  - [`MQTTManager`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/arceus_node/src/mqtt_manager.cpp#L10-L105): Gestión WiFi/MQTT, LWT en `arceus/station_x/status`, recepción de comandos JSON y publicación de telemetría.
-  - [main.cpp](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/arceus_node/src/main.cpp): Lazo principal con tareas periódicas independientes (sensores: 200 ms, pantalla: 300 ms, telemetría: 1000 ms).
+  - [config.h](file:///home/tensei/Proyectos/arceus_grid/firmware/arceus_node/include/config.h): Definición de pines (I2C: 21/22, Relés: 25/26, Pilotos: 27/32/33), tópicos MQTT y credenciales.
+  - [`SensorINA219Manager`](file:///home/tensei/Proyectos/arceus_grid/firmware/arceus_node/src/sensors_ina219.cpp#L3-L45): Adquisición de tensión de bus, corriente y potencia con compensación de offset.
+  - [`DisplayOLEDManager`](file:///home/tensei/Proyectos/arceus_grid/firmware/arceus_node/src/display_oled.cpp#L3-L64): Renderizado en SSD1306 (128×64) de métricas eléctricas, estado de relés y alertas.
+  - [`RelayController`](file:///home/tensei/Proyectos/arceus_grid/firmware/arceus_node/src/relays.cpp#L3-L36): Control no bloqueante con nivel activo en `LOW` y arranque en estado seguro (apagado).
+  - [`PilotController`](file:///home/tensei/Proyectos/arceus_grid/firmware/arceus_node/src/pilots.cpp#L3-L64): Máquina de estados no bloqueante con `millis()` para intermitencias: *NORMAL* (Verde fijo), *WARNING* (Amarillo a 700 ms) y *DANGER* (Rojo rápido a 200 ms).
+  - [`MQTTManager`](file:///home/tensei/Proyectos/arceus_grid/firmware/arceus_node/src/mqtt_manager.cpp#L10-L105): Gestión WiFi/MQTT, LWT en `arceus/station_x/status`, recepción de comandos JSON y publicación de telemetría.
+  - [main.cpp](file:///home/tensei/Proyectos/arceus_grid/firmware/arceus_node/src/main.cpp): Lazo principal con tareas periódicas independientes (sensores: 200 ms, pantalla: 300 ms, telemetría: 1000 ms).
 * **Banco Didáctico Inicial (Etapa 1):**
-  - Implementado en [stage1_test/src/main.cpp](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/firmware/stage1_test/src/main.cpp) con los 3 LEDs en GPIO16, GPIO17, GPIO18 y comandos seriales (`0`, `1`, `2`, `3`).
+  - Implementado en [stage1_test/src/main.cpp](file:///home/tensei/Proyectos/arceus_grid/firmware/stage1_test/src/main.cpp) con los 3 LEDs en GPIO16, GPIO17, GPIO18 y comandos seriales (`0`, `1`, `2`, `3`).
 
 ---
 
@@ -558,17 +558,17 @@ El firmware está estructurado para PlatformIO en [platformio.ini](file:///home/
 
 Se elaboró documentación técnica detallada en la carpeta `hardware/`:
 
-1. **[Arquitectura Eléctrica y Tierras en Estrella](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/schematics/electrical_architecture.md):**
+1. **[Arquitectura Eléctrica y Tierras en Estrella](file:///home/tensei/Proyectos/arceus_grid/hardware/schematics/electrical_architecture.md):**
    - Configuración High-Side del INA219 antes de los relés.
    - Calibración obligatoria del convertidor LM2596 a 5.00 V antes de conectar al pin VIN del ESP32.
    - Conexión de masa en estrella (*Star Ground*) para evitar que las corrientes de retorno de las bombillas circulen por las pistas de masa lógica del ESP32.
-2. **[Estudio de la Etapa de Pilotos 12V (2N2222 vs MOSFET)](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/schematics/pilots_driver_analysis.md):**
+2. **[Estudio de la Etapa de Pilotos 12V (2N2222 vs MOSFET)](file:///home/tensei/Proyectos/arceus_grid/hardware/schematics/pilots_driver_analysis.md):**
    - *Análisis de Topología A (2N2222 + MOSFET):* El 2N2222 actúa como inversor de compuerta; se demuestra que esto provoca que los pilotos se enciendan durante el arranque del ESP32 cuando los GPIOs están en alta impedancia.
    - *Recomendación (Topología B):* Uso de MOSFET de canal N de nivel lógico (*Logic-Level*, e.g., **IRLZ44N** o **AO3400A**) accionado directamente a 3.3V con $R_{gate} = 100\,\Omega$ y $R_{pulldown} = 100\,\text{k}\Omega$. Disipación inferior a $1\,\text{mW}$ por canal sin necesidad de disipador.
-3. **[Aislamiento Óptico de Relés (JD-VCC / VCC)](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/schematics/relays_isolation_guide.md):**
+3. **[Aislamiento Óptico de Relés (JD-VCC / VCC)](file:///home/tensei/Proyectos/arceus_grid/hardware/schematics/relays_isolation_guide.md):**
    - Retiro obligatorio del jumper plástico JD-VCC para desacoplar el ruido electromagnético de las bobinas (alimentadas a 5V) de la línea de 3.3V del ESP32.
-4. **[Diagrama de Cableado Pin-a-Pin](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/schematics/wiring_diagram_station_a_b.md):** Tablas completas de conexión para ambas estaciones.
-5. **[Memoria de Cálculo Eléctrico y Térmico](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/calculations/power_and_thermal_sizing.md):**
+4. **[Diagrama de Cableado Pin-a-Pin](file:///home/tensei/Proyectos/arceus_grid/hardware/schematics/wiring_diagram_station_a_b.md):** Tablas completas de conexión para ambas estaciones.
+5. **[Memoria de Cálculo Eléctrico y Térmico](file:///home/tensei/Proyectos/arceus_grid/hardware/calculations/power_and_thermal_sizing.md):**
    - Corriente máxima total simultánea: $2.41\,\text{A}$.
    - Fuente recomendada: **12 V DC @ 5 A (60 W)** (factor de seguridad del 40%).
    - Protecciones: Fusible general $F_1 = 4\,\text{A}$ rápido y fusibles por estación de $2\,\text{A}$.
@@ -582,14 +582,14 @@ El proyecto incluye dos formas de puesta en marcha:
 
 #### Con Docker Compose:
 ```bash
-cd /home/tensei/.gemini/antigravity/scratch/arceus_grid
+cd /home/tensei/Proyectos/arceus_grid
 docker compose up --build -d
 ```
 Acceso al panel: `http://localhost:8501`
 
 #### Sin Docker (Entorno Virtual Local):
 ```bash
-cd /home/tensei/.gemini/antigravity/scratch/arceus_grid
+cd /home/tensei/Proyectos/arceus_grid
 ./scripts/setup_local.sh
 ```
 
@@ -598,9 +598,9 @@ Para verificar el funcionamiento completo (gráficos en tiempo real, alarmas y c
 ```bash
 python scripts/simulate_stations.py
 ```
-El script [simulate_stations.py](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/scripts/simulate_stations.py) publica telemetría periódica y escucha los comandos MQTT enviados desde el dashboard para conmutar las cargas simuladas interactivamente.
+El script [simulate_stations.py](file:///home/tensei/Proyectos/arceus_grid/scripts/simulate_stations.py) publica telemetría periódica y escucha los comandos MQTT enviados desde el dashboard para conmutar las cargas simuladas interactivamente.
 
-Consulte el archivo [README.md](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/README.md) en la raíz del proyecto para más detalles sobre comandos de flasheo con PlatformIO.
+Consulte el archivo [README.md](file:///home/tensei/Proyectos/arceus_grid/README.md) en la raíz del proyecto para más detalles sobre comandos de flasheo con PlatformIO.
 
 ---
 
@@ -614,7 +614,7 @@ Genera el github
 The current local time is: 2026-11-11T13:27:53-05:00.
 
 The user's current state is as follows:
-Active Document: /home/tensei/.gemini/antigravity/scratch/arceus_grid/README.md (LANGUAGE_UNSPECIFIED)
+Active Document: /home/tensei/Proyectos/arceus_grid/README.md (LANGUAGE_UNSPECIFIED)
 Cursor is on line: 1
 </ADDITIONAL_METADATA>
 
@@ -624,31 +624,31 @@ Cursor is on line: 1
 
 **Fecha y hora:** `2026-11-11T18:31:35Z`
 
-Se ha generado la suite completa de configuración y estandarización para **GitHub** en el repositorio [arceus_grid](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid).
+Se ha generado la suite completa de configuración y estandarización para **GitHub** en el repositorio [arceus_grid](file:///home/tensei/Proyectos/arceus_grid).
 
 ---
 
 ### 📦 Componentes y Archivos de GitHub Creados
 
 1. **Flujo de Integración Continua (CI/CD):**
-   * [.github/workflows/ci.yml](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/.github/workflows/ci.yml): Automatización con **GitHub Actions** que en cada *push* y *pull request*:
+   * [.github/workflows/ci.yml](file:///home/tensei/Proyectos/arceus_grid/.github/workflows/ci.yml): Automatización con **GitHub Actions** que en cada *push* y *pull request*:
      - Instala dependencias y valida sintaxis Python 3.11 con `flake8` y `py_compile`.
-     - Verifica la instanciación limpia de los módulos [`DatabaseManager`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/database/db_manager.py), [`AnomalyDetector`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/ai/anomaly_detector.py) y [`FederatedCoordinator`](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/coordinator/ai/federated_learning.py).
+     - Verifica la instanciación limpia de los módulos [`DatabaseManager`](file:///home/tensei/Proyectos/arceus_grid/coordinator/database/db_manager.py), [`AnomalyDetector`](file:///home/tensei/Proyectos/arceus_grid/coordinator/ai/anomaly_detector.py) y [`FederatedCoordinator`](file:///home/tensei/Proyectos/arceus_grid/coordinator/ai/federated_learning.py).
      - Comprueba la construcción de las imágenes de Docker para Mosquitto y el Coordinador.
 2. **Plantillas de Incidencias (Issue Templates):**
-   * [bug_report.md](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/.github/ISSUE_TEMPLATE/bug_report.md): Formato estructurado para reportar fallos de software o firmware.
-   * [feature_request.md](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/.github/ISSUE_TEMPLATE/feature_request.md): Formato para proponer algoritmos o mejoras.
-   * [hardware_issue.md](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/.github/ISSUE_TEMPLATE/hardware_issue.md): Plantilla técnica especializada para reportar anomalías de instrumentación, caídas de tensión en Shunt del INA219, ruido I2C, drivers MOSFET o aislamiento de relés.
+   * [bug_report.md](file:///home/tensei/Proyectos/arceus_grid/.github/ISSUE_TEMPLATE/bug_report.md): Formato estructurado para reportar fallos de software o firmware.
+   * [feature_request.md](file:///home/tensei/Proyectos/arceus_grid/.github/ISSUE_TEMPLATE/feature_request.md): Formato para proponer algoritmos o mejoras.
+   * [hardware_issue.md](file:///home/tensei/Proyectos/arceus_grid/.github/ISSUE_TEMPLATE/hardware_issue.md): Plantilla técnica especializada para reportar anomalías de instrumentación, caídas de tensión en Shunt del INA219, ruido I2C, drivers MOSFET o aislamiento de relés.
 3. **Plantilla de Pull Request:**
-   * [PULL_REQUEST_TEMPLATE.md](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/.github/PULL_REQUEST_TEMPLATE.md): Lista de comprobación con verificación de commits convencionales, niveles lógicos y límites de archivos binarios.
+   * [PULL_REQUEST_TEMPLATE.md](file:///home/tensei/Proyectos/arceus_grid/.github/PULL_REQUEST_TEMPLATE.md): Lista de comprobación con verificación de commits convencionales, niveles lógicos y límites de archivos binarios.
 4. **Documentos de Comunidad y Gobernanza:**
-   * [LICENSE](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/LICENSE): Licencia **MIT** registrada a nombre de `LNieto-V` (2026).
-   * [CONTRIBUTING.md](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/CONTRIBUTING.md): Guía de contribución con estándar *Conventional Commits* y directrices de seguridad de hardware.
-   * [CODE_OF_CONDUCT.md](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/CODE_OF_CONDUCT.md): Código de conducta estándar para colaboradores.
+   * [LICENSE](file:///home/tensei/Proyectos/arceus_grid/LICENSE): Licencia **MIT** registrada a nombre de `LNieto-V` (2026).
+   * [CONTRIBUTING.md](file:///home/tensei/Proyectos/arceus_grid/CONTRIBUTING.md): Guía de contribución con estándar *Conventional Commits* y directrices de seguridad de hardware.
+   * [CODE_OF_CONDUCT.md](file:///home/tensei/Proyectos/arceus_grid/CODE_OF_CONDUCT.md): Código de conducta estándar para colaboradores.
 5. **Insignias (Badges) y Actualización:**
-   * [README.md](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/README.md): Incorpora insignias activas de estado de CI, Licencia MIT, Python 3.11+, Docker Compose, PlatformIO y Conventional Commits.
+   * [README.md](file:///home/tensei/Proyectos/arceus_grid/README.md): Incorpora insignias activas de estado de CI, Licencia MIT, Python 3.11+, Docker Compose, PlatformIO y Conventional Commits.
 6. **Script de Publicación Automatizado:**
-   * [publish_to_github.sh](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/scripts/publish_to_github.sh): Script interactivo para vincular el remote y subir la rama `main`.
+   * [publish_to_github.sh](file:///home/tensei/Proyectos/arceus_grid/scripts/publish_to_github.sh): Script interactivo para vincular el remote y subir la rama `main`.
 
 ---
 
@@ -664,7 +664,7 @@ Se ha generado la suite completa de configuración y estandarización para **Git
 #### Paso 2: Subir tu código local
 Ejecuta en tu terminal el asistente interactivo:
 ```bash
-cd /home/tensei/.gemini/antigravity/scratch/arceus_grid
+cd /home/tensei/Proyectos/arceus_grid
 ./scripts/publish_to_github.sh
 ```
 
@@ -672,7 +672,7 @@ cd /home/tensei/.gemini/antigravity/scratch/arceus_grid
 
 **Vía SSH (Recomendado si tienes llave SSH configurada):**
 ```bash
-cd /home/tensei/.gemini/antigravity/scratch/arceus_grid
+cd /home/tensei/Proyectos/arceus_grid
 git remote add origin git@github.com:LNieto-V/arceus_grid.git
 git branch -M main
 git push -u origin main
@@ -680,7 +680,7 @@ git push -u origin main
 
 **Vía HTTPS (Con Personal Access Token):**
 ```bash
-cd /home/tensei/.gemini/antigravity/scratch/arceus_grid
+cd /home/tensei/Proyectos/arceus_grid
 git remote add origin https://github.com/LNieto-V/arceus_grid.git
 git branch -M main
 git push -u origin main

@@ -73,7 +73,7 @@ arceus_grid/
 Para levantar el Broker MQTT Mosquitto, el recolector de telemetría y el Dashboard Streamlit en un solo paso:
 
 ```bash
-cd /home/tensei/.gemini/antigravity/scratch/arceus_grid
+cd /home/tensei/Proyectos/arceus_grid
 docker compose up --build -d
 ```
 
@@ -85,7 +85,7 @@ Una vez levantado:
 Si prefieres ejecutar directamente en el sistema operativo anfitrión:
 
 ```bash
-cd /home/tensei/.gemini/antigravity/scratch/arceus_grid
+cd /home/tensei/Proyectos/arceus_grid
 ./scripts/setup_local.sh
 ```
 
@@ -106,19 +106,19 @@ Para verificar todo el pipeline (MQTT, SQLite, gráficos en tiempo real, conmuta
 
 ## 📑 Enlaces Rápidos a la Documentación de Hardware e Ingeniería
 
-1. [Arquitectura Eléctrica y Tierra en Estrella](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/schematics/electrical_architecture.md)
-2. [Estudio y Análisis de la Etapa de Pilotos 12V (2N2222 + MOSFET)](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/schematics/pilots_driver_analysis.md)
-3. [Guía de Aislamiento Óptico de Relés (JD-VCC / VCC)](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/schematics/relays_isolation_guide.md)
-4. [Diagrama de Cableado Pin-a-Pin Estaciones A y B](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/schematics/wiring_diagram_station_a_b.md)
-5. [Memoria de Cálculo de Potencia, Calibres AWG y Térmica](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/hardware/calculations/power_and_thermal_sizing.md)
+1. [Arquitectura Eléctrica y Tierra en Estrella](file:///home/tensei/Proyectos/arceus_grid/hardware/schematics/electrical_architecture.md)
+2. [Estudio y Análisis de la Etapa de Pilotos 12V (2N2222 + MOSFET)](file:///home/tensei/Proyectos/arceus_grid/hardware/schematics/pilots_driver_analysis.md)
+3. [Guía de Aislamiento Óptico de Relés (JD-VCC / VCC)](file:///home/tensei/Proyectos/arceus_grid/hardware/schematics/relays_isolation_guide.md)
+4. [Diagrama de Cableado Pin-a-Pin Estaciones A y B](file:///home/tensei/Proyectos/arceus_grid/hardware/schematics/wiring_diagram_station_a_b.md)
+5. [Memoria de Cálculo de Potencia, Calibres AWG y Térmica](file:///home/tensei/Proyectos/arceus_grid/hardware/calculations/power_and_thermal_sizing.md)
 
 ---
 
 ## 📜 Historial de Chat y Especificaciones del Proyecto
 
-- [Prompt Maestro Canónico de ARCEUS GRID](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/docs/chat_history/PROMPT_MAESTRO_ARCEUS_GRID.md)
-- [Transcripción Completa de la Sesión de Chat](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/docs/chat_history/CHAT_TRANSCRIPT.md)
-- [Log de Telemetría del Chat en JSONL](file:///home/tensei/.gemini/antigravity/scratch/arceus_grid/docs/chat_history/transcript.jsonl)
+- [Prompt Maestro Canónico de ARCEUS GRID](file:///home/tensei/Proyectos/arceus_grid/docs/chat_history/PROMPT_MAESTRO_ARCEUS_GRID.md)
+- [Transcripción Completa de la Sesión de Chat](file:///home/tensei/Proyectos/arceus_grid/docs/chat_history/CHAT_TRANSCRIPT.md)
+- [Log de Telemetría del Chat en JSONL](file:///home/tensei/Proyectos/arceus_grid/docs/chat_history/transcript.jsonl)
 
 
 ---

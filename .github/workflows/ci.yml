@@ -1,0 +1,70 @@
+name: ARCEUS GRID CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  python-lint-and-check:
+    name: Coordinator & Scripts Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r coordinator/requirements.txt
+          pip install flake8 pytest
+
+      - name: Syntax Compilation Check
+        run: |
+          python -m py_compile coordinator/config.py \
+                               coordinator/database/db_manager.py \
+                               coordinator/ai/anomaly_detector.py \
+                               coordinator/ai/federated_learning.py \
+                               coordinator/mqtt/client.py \
+                               coordinator/dashboard/app.py \
+                               coordinator/main.py \
+                               scripts/simulate_stations.py
+
+      - name: Lint with Flake8 (Syntax errors and undefined names)
+        run: |
+          flake8 coordinator scripts --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Run Basic Unit Checks
+        run: |
+          python -c "from coordinator.database.db_manager import DatabaseManager; from coordinator.ai.anomaly_detector import AnomalyDetector; from coordinator.ai.federated_learning import FederatedCoordinator; db = DatabaseManager(); d = AnomalyDetector(); f = FederatedCoordinator(); print('Core modules import and initialize cleanly!')"
+
+  docker-build-test:
+    name: Docker Images Build Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Mosquitto Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./mosquitto
+          file: ./mosquitto/Dockerfile
+          push: false
+
+      - name: Build Coordinator Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./coordinator
+          file: ./coordinator/Dockerfile
+          push: false

@@ -42,11 +42,11 @@
 // ====================================================================
 // CONFIGURACIÓN DE RED Y MQTT
 // ====================================================================
-#define WIFI_SSID     "ARCEUS_NETWORK"
-#define WIFI_PASSWORD "arceus_secure_key"
+#define WIFI_SSID     "iPhone Owen"
+#define WIFI_PASSWORD "0864297531"
 
-#define MQTT_BROKER_IP   "192.168.1.100"  // IP del Host/Raspberry/PC con Mosquitto
-#define MQTT_BROKER_PORT 1883
+#define MQTT_BROKER_IP   "172.20.10.2"  // IP de la PC conectada a la red iPhone Owen
+#define MQTT_BROKER_PORT 1884
 
 // Tópicos MQTT estructurados
 #define MQTT_TOPIC_TELEMETRY "arceus/" STATION_NAME "/telemetry"

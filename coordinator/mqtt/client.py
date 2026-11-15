@@ -24,23 +24,36 @@ class ArceusMQTTClient:
     Subscribes to telemetry, processes anomalies, writes to SQLite, and issues control commands.
     """
 
-    def __init__(self, db_manager: DatabaseManager, anomaly_detector: AnomalyDetector):
+    def __init__(
+        self,
+        db_manager: DatabaseManager,
+        anomaly_detector: AnomalyDetector,
+        client_id: Optional[str] = None,
+        subscribe_telemetry: bool = True
+    ):
         self.db = db_manager
         self.detector = anomaly_detector
-        self.is_connected = False
+        self._is_connected = False
+        self.subscribe_telemetry = subscribe_telemetry
+
+        if not client_id:
+            import uuid
+            self.client_id = f"arceus_coordinator_{uuid.uuid4().hex[:8]}"
+        else:
+            self.client_id = client_id
 
         # Support both Paho MQTT v1 and v2
         try:
             # Paho v2 style
             self.client = mqtt.Client(
                 mqtt.CallbackAPIVersion.VERSION2,
-                client_id="arceus_coordinator",
+                client_id=self.client_id,
                 clean_session=True
             )
         except AttributeError:
             # Paho v1 style fallback
             self.client = mqtt.Client(
-                client_id="arceus_coordinator",
+                client_id=self.client_id,
                 clean_session=True
             )
 
@@ -48,20 +61,32 @@ class ArceusMQTTClient:
         self.client.on_disconnect = self._on_disconnect
         self.client.on_message = self._on_message
 
+    @property
+    def is_connected(self) -> bool:
+        try:
+            return self.client.is_connected()
+        except Exception:
+            return self._is_connected
+
+    @is_connected.setter
+    def is_connected(self, value: bool):
+        self._is_connected = value
+
     def _on_connect(self, client, userdata, flags, rc, *args):
         if rc == 0:
-            self.is_connected = True
-            logger.info("Connected to MQTT Broker at %s:%d", MQTT_BROKER_HOST, MQTT_BROKER_PORT)
-            # Subscribe to all stations
-            client.subscribe([(TOPIC_TELEMETRY_WILDCARD, 1),
-                              (TOPIC_STATUS_WILDCARD, 1),
-                              (TOPIC_ALERTS_WILDCARD, 1)])
-            logger.info("Subscribed to telemetry, status, and alerts topics.")
+            self._is_connected = True
+            logger.info("Connected to MQTT Broker at %s:%d as %s", MQTT_BROKER_HOST, MQTT_BROKER_PORT, self.client_id)
+            if self.subscribe_telemetry:
+                # Subscribe to all stations
+                client.subscribe([(TOPIC_TELEMETRY_WILDCARD, 1),
+                                  (TOPIC_STATUS_WILDCARD, 1),
+                                  (TOPIC_ALERTS_WILDCARD, 1)])
+                logger.info("Subscribed to telemetry, status, and alerts topics.")
         else:
             logger.error("Failed to connect to MQTT broker with return code: %d", rc)
 
     def _on_disconnect(self, client, userdata, rc, *args):
-        self.is_connected = False
+        self._is_connected = False
         logger.warning("Disconnected from MQTT broker (rc=%s). Will attempt reconnect.", rc)
 
     def _on_message(self, client, userdata, msg):

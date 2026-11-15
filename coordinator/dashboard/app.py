@@ -44,7 +44,12 @@ def get_system_components():
     db = DatabaseManager(DB_PATH)
     detector = AnomalyDetector()
     fed_coordinator = FederatedCoordinator()
-    mqtt_client = ArceusMQTTClient(db, detector)
+    mqtt_client = ArceusMQTTClient(
+        db,
+        detector,
+        client_id="arceus_dashboard",
+        subscribe_telemetry=False
+    )
     # Start MQTT client in background if not already started
     mqtt_client.start()
     return db, detector, fed_coordinator, mqtt_client

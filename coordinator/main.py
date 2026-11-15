@@ -21,7 +21,12 @@ def main():
 
     db_mgr = DatabaseManager()
     anomaly_detector = AnomalyDetector()
-    mqtt_client = ArceusMQTTClient(db_mgr, anomaly_detector)
+    mqtt_client = ArceusMQTTClient(
+        db_mgr,
+        anomaly_detector,
+        client_id="arceus_collector",
+        subscribe_telemetry=True
+    )
 
     def shutdown_handler(signum, frame):
         logger.info("Received termination signal (%s). Shutting down cleanly...", signum)

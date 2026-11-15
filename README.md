@@ -123,6 +123,19 @@ Para verificar todo el pipeline (MQTT, SQLite, gráficos en tiempo real, conmuta
 
 ---
 
+## 📡 Topología Inalámbrica con ESP-NOW (1x Gateway Main + 2x Nodos Sensores)
+
+El proyecto incluye soporte nativo para operar con **3 placas ESP32** mediante **ESP-NOW**:
+- **ESP32 Main / Gateway:** Se conecta al Wi-Fi y a Mosquitto; hace de puente bidireccional entre la radio ESP-NOW y MQTT.
+  - Sketch Arduino IDE: [espnow_gateway.ino](firmware/arduino/espnow_gateway/espnow_gateway.ino)
+- **ESP32 Nodos Sensores (Estación A y B):** Miden tensión/corriente con INA219, gobiernan relés y pilotos 12V, y transmiten a alta velocidad por ESP-NOW (sin necesidad de conectarse a la red Wi-Fi).
+  - Sketch Arduino IDE: [espnow_station_node.ino](firmware/arduino/espnow_station_node/espnow_station_node.ino)
+- **Documentación Completa y Protocolo:**
+  - [Guía de Arquitectura y Flasheo ESP-NOW](docs/ESPNOW_ARCHITECTURE.md)
+  - [Definición del Protocolo Binario](firmware/espnow_protocol.h)
+
+---
+
 ## 🔧 Compilación y Flasheo del Firmware ESP32
 
 El proyecto incluye configuración para **PlatformIO**:

@@ -12,6 +12,7 @@ services:
     restart: unless-stopped
     ports:
       - "${MOSQUITTO_PORT:-1883}:1883"
+      - "1884:1883"
       - "9001:9001"
     volumes:
       - mosquitto_data:/mosquitto/data

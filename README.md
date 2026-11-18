@@ -15,6 +15,15 @@
 
 ```
 arceus_grid/
+├── parte_owen/                     # ⚡ KIT MAESTRO DE APRENDIZAJE Y SUSTENTACIÓN (OWEN MORA)
+│   ├── README.md                   # Cronograma y guía de estudio acelerado en 3 horas
+│   ├── 01_INGENIERIA_IA_Y_FEDAVG_3_HORAS.md  # Detección Dual, Edge MLP y FedAvg explicado
+│   ├── 02_MODELO_MATEMATICO_Y_FORMULAS_CLAVE.md # Ecuaciones, MSE, Z-score, INA219 y 164 bytes
+│   ├── 03_JUSTIFICACION_DOCKER_SQLITE_VS_ALTERNATIVAS.md # Por qué Docker y SQLite WAL vs otros
+│   ├── 04_BANCO_PREGUNTAS_TRAMPA_Y_DEFENSA_JURADO.md # 10 preguntas difíciles con respuestas modelo
+│   ├── 05_GUION_EXPOSICION_OWEN_MORA.md      # Speech cronometrado de apertura y defensa IA
+│   ├── Guia_Estudio_AIoT_Federado_Arceus_Grid.doc    # Guía completa formateada para Word (.doc)
+│   └── Guia_Exposicion_5_Personas_Arceus_Grid.doc   # Roles de sustentación de todo el equipo (.doc)
 ├── diapositivas/                   # Material Exclusivo de Exposición y Sustentación
 │   ├── 00_INICIALIZACION_Y_APERTURA.md   # Apertura, setup del aula y primeros 60 segundos
 │   ├── 01_PLANTEAMIENTO_DEL_PROBLEMA.md  # Planteamiento formal del problema de ingeniería

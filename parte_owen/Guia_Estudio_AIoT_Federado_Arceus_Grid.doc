@@ -1,0 +1,406 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+      xmlns:w='urn:schemas-microsoft-com:office:word'
+      xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Guia Integral de Estudio - AIoT Federado y Arceus Grid</title>
+<!--[if gte mso 9]>
+<xml>
+ <w:WordDocument>
+  <w:View>Print</w:View>
+  <w:Zoom>100</w:Zoom>
+  <w:DoNotOptimizeForBrowser/>
+ </w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+  @page WordSection1 {
+    size: 21.59cm 27.94cm; /* Letter */
+    margin: 2.54cm 2.54cm 2.54cm 2.54cm;
+    mso-header-margin: 35.4pt;
+    mso-footer-margin: 35.4pt;
+    mso-paper-source: 0;
+  }
+  div.WordSection1 {
+    page: WordSection1;
+  }
+  body {
+    font-family: 'Segoe UI', Calibri, Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #24292F;
+    background-color: #FFFFFF;
+  }
+  h1 {
+    font-size: 20pt;
+    color: #0F2D59;
+    border-bottom: 2pt solid #0F2D59;
+    padding-bottom: 6pt;
+    margin-top: 18pt;
+    margin-bottom: 10pt;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 15pt;
+    color: #1A447A;
+    border-bottom: 1pt solid #D0D7DE;
+    padding-bottom: 4pt;
+    margin-top: 16pt;
+    margin-bottom: 8pt;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 12pt;
+    color: #24528E;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+    font-weight: bold;
+  }
+  p {
+    margin-top: 0pt;
+    margin-bottom: 6pt;
+    text-align: justify;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10pt;
+    margin-bottom: 12pt;
+    font-size: 10pt;
+  }
+  th {
+    background-color: #0F2D59;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: left;
+    padding: 8pt;
+    border: 1pt solid #0F2D59;
+  }
+  td {
+    padding: 7pt;
+    border: 1pt solid #D0D7DE;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background-color: #F8FAFC;
+  }
+  .callout {
+    background-color: #F0F4F8;
+    border-left: 4pt solid #0F2D59;
+    padding: 10pt 12pt;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    border-radius: 0 4pt 4pt 0;
+  }
+  .callout-title {
+    font-weight: bold;
+    color: #0F2D59;
+    margin-bottom: 4pt;
+  }
+  .callout-danger {
+    background-color: #FFF5F5;
+    border-left: 4pt solid #C53030;
+    padding: 10pt 12pt;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    border-radius: 0 4pt 4pt 0;
+  }
+  .callout-danger .callout-title {
+    color: #C53030;
+  }
+  code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9.5pt;
+    background-color: #F1F3F5;
+    padding: 2pt 4pt;
+    border-radius: 3pt;
+    color: #B02A37;
+  }
+  pre {
+    background-color: #1E293B;
+    color: #E2E8F0;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    padding: 10pt;
+    border-radius: 4pt;
+    overflow-x: auto;
+    margin-top: 8pt;
+    margin-bottom: 10pt;
+  }
+  .formula-box {
+    background-color: #F8FAFC;
+    border: 1pt solid #CBD5E1;
+    text-align: center;
+    font-family: 'Cambria Math', 'Times New Roman', serif;
+    font-size: 13pt;
+    font-style: italic;
+    padding: 10pt;
+    margin: 10pt 0;
+    border-radius: 4pt;
+    color: #0F2D59;
+  }
+  .header-card {
+    background-color: #0F2D59;
+    color: #FFFFFF;
+    padding: 20pt;
+    border-radius: 6pt;
+    margin-bottom: 20pt;
+  }
+  .header-card h1 {
+    color: #FFFFFF;
+    border-bottom: 2pt solid #60A5FA;
+    margin-top: 0;
+  }
+  .header-card p {
+    color: #E2E8F0;
+    margin-bottom: 4pt;
+  }
+  .question-card {
+    background-color: #FFFFFF;
+    border: 1pt solid #E2E8F0;
+    border-left: 4pt solid #2563EB;
+    padding: 10pt 12pt;
+    margin-bottom: 12pt;
+    box-shadow: 0 1pt 3pt rgba(0,0,0,0.05);
+  }
+  .q-title {
+    font-weight: bold;
+    color: #1E40AF;
+    font-size: 11pt;
+    margin-bottom: 4pt;
+  }
+</style>
+</head>
+<body>
+<div class="WordSection1">
+
+<div class="header-card">
+  <h1 style="color:#ffffff;">GUÍA INTEGRAL DE ESTUDIO Y SUSTENTACIÓN TÉCNICA</h1>
+  <p style="font-size:14pt; font-weight:bold; color:#93C5FD;">Detección Federada de Anomalías en Maquinaria Industrial mediante Arquitecturas IIoT y AIoT (ARCEUS GRID)</p>
+  <p><strong>Autores:</strong> Owen Mora, Braulio Ribón, Angelo Charris, Manuel Pertuz</p>
+  <p><strong>Institución:</strong> Universidad Cooperativa de Colombia (UCC) — Facultad de Ingeniería</p>
+  <p><strong>Área:</strong> Computación Ubicua, Sistemas Embebidos, IIoT e Inteligencia Artificial en el Borde</p>
+  <p><strong>Base Documental:</strong> Artículo científico (ubicua_final.pdf) y Plataforma de Software Libre (LNieto-V/arceus_grid)</p>
+</div>
+
+<h2>1. FUNDAMENTOS Y MOTIVACIÓN DEL SISTEMA DESCENTRALIZADO</h2>
+<p>En el mantenimiento predictivo industrial convencional, la telemetría continua de maquinaria rotativa se centraliza en servidores en la nube. Esta práctica genera tres barreras críticas:</p>
+<ul>
+  <li><strong>Saturación de Ancho de Banda:</strong> La transmisión de señales dinámicas de vibración (adquiridas a cientos de muestras por segundo) colapsa la infraestructura de red industrial cuando el número de máquinas escala.</li>
+  <li><strong>Latencias Inaceptables:</strong> El retardo inherente a la comunicación con la nube (50 ms a 500 ms) impide la activación oportuna de protecciones ante eventos eléctricos destructivos como cortocircuitos o bloqueos mecánicos.</li>
+  <li><strong>Vulnerabilidad de la Privacidad:</strong> Los regímenes de producción y patrones de operación constituyen propiedad intelectual confidencial de la planta, cuya exposición en la nube representa un riesgo operativo severo.</li>
+</ul>
+<p><strong>Solución Implementada:</strong> Combinar nodos inteligentes de borde (AIoT basados en ESP32) con una infraestructura IIoT distribuida. Los nodos procesan las mediciones de forma local y ejecutan un entrenamiento descentralizado mediante <strong>Aprendizaje Federado (Federated Learning)</strong>, compartiendo exclusivamente los pesos sinápticos actualizados hacia un coordinador central que ejecuta el algoritmo <strong>FedAvg</strong>.</p>
+
+<h2>2. HARDWARE, INSTRUMENTACIÓN Y BANCO EXPERIMENTAL</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Componente</th>
+      <th>Especificación / Modelo</th>
+      <th>Cantidad</th>
+      <th>Función en el Sistema</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Motores de Abanico</strong></td>
+      <td>AC Monofásicos Industriales</td>
+      <td>4</td>
+      <td>Cargas inductivas reales para inducir anomalías mecánicas y térmicas.</td>
+    </tr>
+    <tr>
+      <td><strong>Unidades MCU</strong></td>
+      <td>ESP32 NodeMCU (Xtensa LX6 240MHz)</td>
+      <td>3</td>
+      <td>Procesamiento en el borde (2 estaciones sensóricas + 1 Gateway/Coordinador).</td>
+    </tr>
+    <tr>
+      <td><strong>Acelerómetro</strong></td>
+      <td>ADXL345 Digital Triaxial (I2C)</td>
+      <td>3</td>
+      <td>Captura de firmas de vibración en rodamientos y desbalance de aspas.</td>
+    </tr>
+    <tr>
+      <td><strong>Sensor Térmico</strong></td>
+      <td>DS18B20 Digital (OneWire)</td>
+      <td>1</td>
+      <td>Supervisión de temperatura en el devanado crítico del estator.</td>
+    </tr>
+    <tr>
+      <td><strong>Sensor de Corriente/Voltaje</strong></td>
+      <td>INA219 (I2C, Shunt 0.1 Ω)</td>
+      <td>2</td>
+      <td>Instrumentación eléctrica High-Side (tensión de bus, corriente y potencia).</td>
+    </tr>
+    <tr>
+      <td><strong>Sensor de Corriente AC</strong></td>
+      <td>Transformador Split-Core sin contacto</td>
+      <td>Lote</td>
+      <td>Medición de corriente alterna en las fases de alimentación de los motores.</td>
+    </tr>
+    <tr>
+      <td><strong>Protección Eléctrica</strong></td>
+      <td>Tacos termomagnéticos 20A</td>
+      <td>3</td>
+      <td>Protección contra sobrecargas y cortocircuitos en líneas principales AC.</td>
+    </tr>
+    <tr>
+      <td><strong>Módulo de Relés</strong></td>
+      <td>4 canales con optoacopladores (5V)</td>
+      <td>1</td>
+      <td>Conmutación de cargas aisladas galvánicamente.</td>
+    </tr>
+    <tr>
+      <td><strong>Convertidores Buck</strong></td>
+      <td>LM2596 DC-DC ajustable</td>
+      <td>2</td>
+      <td>Reducción de 12V DC a 5.00V DC regulados para alimentación del ESP32.</td>
+    </tr>
+    <tr>
+      <td><strong>Pantallas OLED</strong></td>
+      <td>SSD1306 0.96'' 128x64 I2C</td>
+      <td>2</td>
+      <td>Supervisión visual local de tensión, corriente, potencia y estado de enlace.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. INGENIERÍA ELÉCTRICA, SEGURIDAD Y NORMATIVAS IPC</h2>
+
+<div class="callout">
+  <div class="callout-title">NORMATIVAS INTERNACIONALES DE PCB APLICADAS</div>
+  <p><strong>IPC-2221B (Generic Standard on Printed Board Design):</strong> Se aplicó para el dimensionamiento del ancho de pistas de cobre según la corriente máxima y la elevación térmica permisible (ΔT ≤ 10°C). Se garantizaron distancias dieléctricas de aislamiento (clearance y creepage) para inmunidad ante transitorios.</p>
+  <p><strong>IPC-2222 (Sectional Design Standard for Rigid Printed Boards):** Se especificó cobre rígido de 1 oz/ft² (35 µm), terminales de conexión industriales de tornillo y planos continuos de masa para blindaje electromagnético (EMI) frente al ruido generado por los motores de abanico.</p>
+</div>
+
+<h3>Topología de Tierra en Estrella (Star Ground)</h3>
+<p>Para erradicar la interferencia electromagnética y los reseteos inesperados (<em>Brownout Reset</em>), se implementó un enrutamiento en estrella:</p>
+<ul>
+  <li>Todos los retornos negativos de potencia (bombillas, motores, relés) convergen directamente en el borne negativo de la fuente de 12V mediante conductores dedicados.</li>
+  <li>Se prohíbe cerrar circuitos de potencia a través de las patillas GND del ESP32, evitando caídas de potencial (I × R) que alteren la referencia lógica y corrompan el bus I2C.</li>
+</ul>
+
+<div class="callout-danger">
+  <div class="callout-title">REGLA CRÍTICA DE SEGURIDAD: EL JUMPER JD-VCC DE LOS RELÉS</div>
+  <p>Los módulos comerciales de relés Songle SRD operan a 5V y consumen aproximadamente 72 mA por bobina (288 mA simultáneos). <strong>Nunca deben alimentarse desde el pin de 3.3V del ESP32.</strong></p>
+  <p><strong>Procedimiento Mandatorio:</strong> Se retira el puente plástico (jumper) entre <code>VCC</code> y <code>JD-VCC</code>. El pin <code>JD-VCC</code> se conecta a los 5.0V externos del LM2596 (aislando la fuerza contraelectromotriz inductiva), mientras que <code>VCC</code> se conecta a los 3.3V del ESP32 para alimentar exclusivamente los optoacopladores. Las entradas <code>IN1..IN4</code> son <em>Active-LOW</em>.</p>
+</div>
+
+<h3>Etapa de Control para Pilotos Indicadores 12V</h3>
+<p>Para gobernar pilotos industriales de 12V desde los pines GPIO de 3.3V del ESP32 se evaluaron dos alternativas:</p>
+<ol>
+  <li><strong>BJT 2N2222 + MOSFET de Potencia:</strong> El transistor bipolar polariza la compuerta a 12V para excitar MOSFETs estándar que requieren V<sub>GS</sub> ≥ 10V. Introduce inversión lógica y transitorios de encendido al arrancar el microcontrolador.</li>
+  <li><strong>MOSFET de Nivel Lógico Directo (Logic-Level, Recomendado):</strong> Modelos como el <strong>IRLZ44N</strong>, <strong>AO3400A</strong> o <strong>2N7000</strong> saturan completamente con V<sub>GS</sub> = 3.3V, simplificando el circuito a una resistencia serie de 100 Ω y una pull-down de 10 kΩ.</li>
+</ol>
+
+<h2>4. ARQUITECTURA DE COMUNICACIONES: ESP-NOW Y MQTT</h2>
+<p>El sistema implementa una red industrial jerárquica:</p>
+<ul>
+  <li><strong>Nivel de Borde (ESP-NOW):</strong> Los nodos sensores (Estaciones A y B) se comunican con el Gateway mediante ESP-NOW. No requieren conectarse a la red Wi-Fi ni gestionar direcciones IP, logrando paquetes binarios ultracompactos (apenas ~25 bytes) y reduciendo el consumo y la superficie de exposición ante ataques informáticos.</li>
+  <li><strong>Nivel de Coordinación (MQTT):</strong> El ESP32 Gateway central recibe los paquetes de radio, los convierte a JSON y los publica en el broker Mosquitto en tópicos jerárquicos (<code>arceus/station_a/telemetry</code>, <code>arceus/station_a/commands</code>, etc.).</li>
+  <li><strong>Firmware No Bloqueante:</strong> Se erradica por completo la función <code>delay()</code>, sustituyéndola por temporización diferencial mediante <code>millis()</code> y máquinas de estados. Esto asegura que la protección por sobrecorriente (> 2.8A) corte los relés en menos de 1 milisegundo.</li>
+</ul>
+
+<h2>5. INTELIGENCIA ARTIFICIAL EN EL BORDE Y APRENDIZAJE FEDERADO</h2>
+
+<h3>Detección Dual de Anomalías</h3>
+<ol>
+  <li><strong>Guardrails Deterministas Inmediatos:</strong>
+    <ul>
+      <li>Subtensión crítica: V &lt; 10.0 V | Sobretensión crítica: V &gt; 14.0 V</li>
+      <li>Sobrecorriente de disparo: I &gt; 2.8 A</li>
+      <li>Corriente fantasma / fuga: I &gt; 40 mA con todos los relés apagados</li>
+      <li>Circuito abierto: I &lt; 30 mA con relés activados (filamento roto o motor desconectado)</li>
+      <li>Discrepancia de potencia INA219: |P - (V × I)| &gt; 1.2 W</li>
+    </ul>
+  </li>
+  <li><strong>Capa Estadística / ML (Z-Score):</strong>
+    <div class="formula-box">
+      Z = |V<sub>medido</sub> - μ<sub>nominal</sub>| / σ<sub>V</sub>
+    </div>
+    Detecta degradación paulatina de bornes, envejecimiento del devanado y resistencia parásita antes de la falla física.
+  </li>
+</ol>
+
+<h3>Algoritmo Federated Averaging (FedAvg)</h3>
+<p>Cada nodo entrena localmente una red neuronal ligera de 2 capas (Entrada: 3 variables [V, relé1, relé2] → Oculta: 8 neuronas ReLU → Salida: 1 neurona lineal de corriente) mediante Descenso de Gradiente Estocástico (SGD):</p>
+<div class="formula-box">
+  w<sub>t+1</sub><sup>k</sup> = w<sub>t</sub><sup>k</sup> - η ∇ F<sub>k</sub>(w<sub>t</sub><sup>k</sup>)
+</div>
+<p>El coordinador central agrega los modelos ponderando las contribuciones por el número de muestras locales:</p>
+<div class="formula-box">
+  θ<sub>global</sub> = Σ (n<sub>k</sub> / n<sub>total</sub>) · w<sub>t+1</sub><sup>k</sup>
+</div>
+
+<h2>6. LAS 4 MÉTRICAS DE EVALUACIÓN DEL ARTÍCULO CIENTÍFICO</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Métrica</th>
+      <th>Descripción y Criterio Técnico</th>
+      <th>Resultado en el Banco ARCEUS GRID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Precisión de Detección</strong></td>
+      <td>Tasa de acierto ante anomalías inducidas de vibración mecánica (ADXL345) y elevación térmica en devanados (DS18B20).</td>
+      <td>Alta sensibilidad (Recall) superior al 95%, detectando desbalance de aspas y bloqueo de rotor en tiempo real.</td>
+    </tr>
+    <tr>
+      <td><strong>2. Tráfico de Red</strong></td>
+      <td>Reducción en bytes transmitidos en comparación con el envío masivo de telemetría cruda a la nube.</td>
+      <td><strong>Reducción superior al 95%:</strong> De cientos de megabytes diarios en telemetría continua a unos pocos kilobytes por ronda federada.</td>
+    </tr>
+    <tr>
+      <td><strong>3. Heterogeneidad de Datos</strong></td>
+      <td>Capacidad del modelo global de converger y generalizar ante perfiles operacionales disímiles (datos Non-IID).</td>
+      <td>FedAvg equilibra los gradientes de motores con diferentes regímenes de carga e impedancias sin desestabilizarse.</td>
+    </tr>
+    <tr>
+      <td><strong>4. Resistencia a Desconexiones</strong></td>
+      <td>Estabilidad del protocolo ante pérdidas transitorias de conectividad Wi-Fi entre los nodos ESP32.</td>
+      <td>Inferencia y guardrails locales 100% operativos sin dependencia de red; resincronización automática de pesos al restablecer el enlace.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>7. BANCO DE PREGUNTAS Y RESPUESTAS PARA SUSTENTACIÓN ORAL</h2>
+
+<div class="question-card">
+  <div class="q-title">P1: ¿Por qué emplear Aprendizaje Federado en vez de Machine Learning centralizado?</div>
+  <p><strong>R:</strong> Porque garantiza la privacidad operativa (los datos nunca salen de la estación de trabajo), minimiza el tráfico de red en más de un 95% al enviar solo pesos sinápticos y otorga tolerancia a fallos, permitiendo que la máquina continúe detectando anomalías aunque se caiga la conexión a internet.</p>
+</div>
+
+<div class="question-card">
+  <div class="q-title">P2: ¿Por qué es obligatorio retirar el jumper JD-VCC del módulo de relés?</div>
+  <p><strong>R:</strong> Para separar galvánicamente los 5V de las bobinas inductivas de los 3.3V lógicos del ESP32. Si se mantiene el jumper, la tensión residual de 1.7V (5V - 3.3V) sobrepasa el umbral del optoacoplador, dejando el relé encendido permanentemente y transmitiendo ruido inductivo destructivo a la CPU.</p>
+</div>
+
+<div class="question-card">
+  <div class="q-title">P3: ¿Qué función cumple la topología de "Tierra en Estrella" (Star Ground)?</div>
+  <p><strong>R:</strong> Conecta todos los retornos negativos de potencia y control en un único borne físico en la fuente de alimentación. Evita que las fuertes corrientes de los motores circulen por las pistas de masa de las señales débiles I2C (INA219, ADXL345), eliminando ruidos espurios y reseteos por brownout.</p>
+</div>
+
+<div class="question-card">
+  <div class="q-title">P4: ¿Cómo maneja el sistema el problema de datos Non-IID entre diferentes motores?</div>
+  <p><strong>R:</strong> Mediante el promedio ponderado de FedAvg (θ = Σ (n<sub>k</sub> / n) · w<sub>k</sub>), donde el coordinador pondera los pesos de cada estación según su volumen de muestras, logrando que el modelo global aprenda la física común del desbalance rotativo sin sobreajustarse a las peculiaridades de una sola máquina.</p>
+</div>
+
+<div class="question-card">
+  <div class="q-title">P5: ¿Qué ventajas aporta SQLite con modo WAL en el servicio coordinador?</div>
+  <p><strong>R:</strong> El modo WAL (Write-Ahead Logging) permite lecturas y escrituras concurrentes sin bloqueo mutuo: el recolector MQTT puede registrar telemetría a alta velocidad en segundo plano mientras el dashboard de Streamlit realiza consultas analíticas complejas para generar los gráficos en tiempo real.</p>
+</div>
+
+<h2>8. REFERENCIAS BIBLIOGRÁFICAS FORMALES</h2>
+<p>[1] B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas, "Communication-efficient learning of deep networks from decentralized data," in <em>Artificial Intelligence and Statistics</em>, PMLR, 2017, pp. 1273–1282.</p>
+<p>[2] K. Bonawitz et al., "Towards federated learning at scale: System design," <em>Proceedings of Machine Learning and Systems</em>, vol. 1, pp. 374–388, 2019.</p>
+<p>[3] Espressif Systems, <em>ESP32 Series Datasheet</em>, Rev. 3.7, Espressif Systems, 2023.</p>
+<p>[4] IPC Association Connecting Electronics Industries, <em>IPC-2221B: Generic Standard on Printed Board Design</em>, IPC, 2012.</p>
+<p>[5] IPC Association Connecting Electronics Industries, <em>IPC-2222: Sectional Design Standard for Rigid Printed Boards</em>, IPC, 2020.</p>
+<p>[6] L. Nieto, <em>Arceus Grid Repository</em>, GitHub repository, 2024. Disponible: https://github.com/LNieto-V/arceus_grid.</p>
+
+</div>
+</body>
+</html>

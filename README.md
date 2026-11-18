@@ -16,12 +16,24 @@
 ```
 arceus_grid/
 ├── diapositivas/                   # Material Exclusivo de Exposición y Sustentación
+│   ├── 00_INICIALIZACION_Y_APERTURA.md   # Apertura, setup del aula y primeros 60 segundos
 │   ├── 01_PLANTEAMIENTO_DEL_PROBLEMA.md  # Planteamiento formal del problema de ingeniería
 │   ├── 02_ESTRUCTURA_Y_GUION_PRESENTACION.md # Guion y speech diapositiva por diapositiva
 │   ├── 03_CONTENIDO_DIAPOSITIVAS.md      # Textos y viñetas listos para PowerPoint/Canva
 │   ├── 04_DIAGRAMAS_VISUALES.md          # Diagramas Mermaid (Hardware, ESP-NOW, FedAvg)
 │   ├── 05_GUIA_DEMO_EN_VIVO.md           # Procedimiento paso a paso para la demo en vivo
+│   ├── 06_MODELO_MATEMATICO_EXPLICADO.md # Deducción y formulación matemática exhaustiva
 │   └── diapositivas_marp.md              # Presentación ejecutable en Marp / Markdown
+├── docs/                           # Documentación Académica y Guías de Sustentación
+│   ├── guias_estudio/              # Guías integrales para estudio y defensa oral
+│   │   ├── Guia_Estudio_AIoT_Federado_Arceus_Grid.md  # Guía técnica en Markdown
+│   │   ├── Guia_Estudio_AIoT_Federado_Arceus_Grid.doc # Guía formateada en Word (.doc)
+│   │   ├── Guia_Exposicion_5_Personas_Arceus_Grid.md  # Roles y guiones para 5 personas (.md)
+│   │   └── Guia_Exposicion_5_Personas_Arceus_Grid.doc # Roles y guiones para 5 personas (.doc)
+│   ├── paper/                      # Artículo científico base de la investigación
+│   │   └── articulo_cientifico_ubicua_final.pdf       # Paper UCC (AIoT & FedAvg)
+│   ├── ESPNOW_ARCHITECTURE.md      # Topología de red de campo y protocolo binario
+│   └── chat_history/               # Registro técnico de especificaciones del proyecto
 ├── docker-compose.yml              # Orquestador multi-contenedor (Broker, Colector, Dashboard)
 ├── mosquitto/                      # Broker MQTT Eclipse Mosquitto
 │   ├── Dockerfile

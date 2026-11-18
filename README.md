@@ -15,6 +15,13 @@
 
 ```
 arceus_grid/
+├── diapositivas/                   # Material Exclusivo de Exposición y Sustentación
+│   ├── 01_PLANTEAMIENTO_DEL_PROBLEMA.md  # Planteamiento formal del problema de ingeniería
+│   ├── 02_ESTRUCTURA_Y_GUION_PRESENTACION.md # Guion y speech diapositiva por diapositiva
+│   ├── 03_CONTENIDO_DIAPOSITIVAS.md      # Textos y viñetas listos para PowerPoint/Canva
+│   ├── 04_DIAGRAMAS_VISUALES.md          # Diagramas Mermaid (Hardware, ESP-NOW, FedAvg)
+│   ├── 05_GUIA_DEMO_EN_VIVO.md           # Procedimiento paso a paso para la demo en vivo
+│   └── diapositivas_marp.md              # Presentación ejecutable en Marp / Markdown
 ├── docker-compose.yml              # Orquestador multi-contenedor (Broker, Colector, Dashboard)
 ├── mosquitto/                      # Broker MQTT Eclipse Mosquitto
 │   ├── Dockerfile
@@ -101,6 +108,19 @@ Para verificar todo el pipeline (MQTT, SQLite, gráficos en tiempo real, conmuta
    python scripts/simulate_stations.py
    ```
 3. El simulador publicará telemetría real de las Estaciones A y B cada segundo y responderá en vivo cuando enciendas o apagues las bombillas desde el Dashboard de Streamlit.
+
+---
+
+## 🎤 Material Exclusivo para Sustentación y Diapositivas
+
+Todo el material para la exposición oral y presentación del proyecto se encuentra organizado en la carpeta [`diapositivas/`](diapositivas/):
+
+1. 📄 [Formulación y Planteamiento del Problema](diapositivas/01_PLANTEAMIENTO_DEL_PROBLEMA.md) — Base formal, contexto, problema central y objetivos de ingeniería.
+2. 🗣️ [Estructura y Guion de Exposición](diapositivas/02_ESTRUCTURA_Y_GUION_PRESENTACION.md) — Planificación diapositiva por diapositiva con speech verbal del expositor.
+3. 📊 [Textos Listos para Diapositivas](diapositivas/03_CONTENIDO_DIAPOSITIVAS.md) — Viñetas, tablas y fórmulas optimizadas para PowerPoint o Canva.
+4. 📐 [Diagramas Visuales Mermaid](diapositivas/04_DIAGRAMAS_VISUALES.md) — Diagramas de potencia, comunicaciones, FedAvg y máquina de estados.
+5. 🚀 [Guía Paso a Paso para la Demo en Vivo](diapositivas/05_GUIA_DEMO_EN_VIVO.md) — Procedimiento de demostración práctica ante jurados y evaluadores.
+6. 📽️ [Presentación Marp / Markdown](diapositivas/diapositivas_marp.md) — Deck de diapositivas listo para proyectar o exportar a PDF/HTML.
 
 ---
 

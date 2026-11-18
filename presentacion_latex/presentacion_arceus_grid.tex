@@ -99,9 +99,9 @@
     {\large\color{inkmuted}Monitoreo Eléctrico 12V DC, ESP-NOW y Aprendizaje Federado}\\[16pt]
     \begin{tikzpicture}
       \node[fill=brandgreen!15,draw=brandgreen,line width=0.9pt,rounded corners=4pt,
-            inner xsep=14pt,inner ysep=7pt,align=center,font=\small\bfseries,text=inkdark]
-        {Owen Mora $\cdot$ Angelo Charris $\cdot$ Braulio Ribón\\[2pt]
-         Manuel Pertuz $\cdot$ Milton Sánchez};
+        inner xsep=14pt,inner ysep=7pt,align=center,font=\small\bfseries,text=inkdark]
+      {Owen Mora $\cdot$ Angelo Charris $\cdot$ Braulio Ribón\\[2pt]
+        Manuel Pertuz $\cdot$ Milton Sánchez};
     \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -198,10 +198,10 @@
     \begin{column}{0.45\textwidth}
       \centering
       \begin{tikzpicture}[
-        node distance=0.35cm,
-        b/.style={draw=brandblue,fill=bgsoft,rounded corners=4pt,minimum width=4.9cm,minimum height=0.88cm,align=center,font=\scriptsize\bfseries,line width=0.85pt},
-        ar/.style={-{Stealth[length=2.2mm]},line width=1.1pt,draw=brandblue}
-      ]
+          node distance=0.35cm,
+          b/.style={draw=brandblue,fill=bgsoft,rounded corners=4pt,minimum width=4.9cm,minimum height=0.88cm,align=center,font=\scriptsize\bfseries,line width=0.85pt},
+          ar/.style={-{Stealth[length=2.2mm]},line width=1.1pt,draw=brandblue}
+        ]
         \node[b] (n1) {\color{brandblue}1. Borde: Estaciones A y B\\[-1pt]{\tiny\normalfont ESP32 + INA219 + Relés 12V}};
         \node[b,below=of n1,draw=brandamber] (n2) {\color{brandamber}2. Puente: Gateway Central\\[-1pt]{\tiny\normalfont Radio ESP-NOW (24 B) $\rightarrow$ MQTT}};
         \node[b,below=of n2,draw=brandgreen] (n3) {\color{brandgreen}3. Coordinador: Servidor Docker\\[-1pt]{\tiny\normalfont Mosquitto + SQLite WAL + FedAvg}};
@@ -224,12 +224,12 @@
     \toprule
     \textbf{\color{inkdark}Módulo} & \textbf{\color{inkdark}Componentes Clave} & \textbf{\color{inkdark}Función Principal} \\
     \midrule
-    Estación A & ESP32, INA219, OLED, 2 Bombillas & Censado y corte local \\
+    Estación A                     & ESP32, INA219, OLED, 2 Bombillas          & Censado y corte local                     \\
     \rowcolor{bgsoft}
-    Estación B & ESP32, INA219, OLED, 2 Bombillas & Monitoreo de segunda rama \\
-    Gateway Main & 1x ESP32 en Modo Dual & Traduce ESP-NOW a MQTT \\
+    Estación B                     & ESP32, INA219, OLED, 2 Bombillas          & Monitoreo de segunda rama                 \\
+    Gateway Main                   & 1x ESP32 en Modo Dual                     & Traduce ESP-NOW a MQTT                    \\
     \rowcolor{bgsoft}
-    Servidor Central & Docker, SQLite WAL, Streamlit & Dashboard y rondas FedAvg \\
+    Servidor Central               & Docker, SQLite WAL, Streamlit             & Dashboard y rondas FedAvg                 \\
     \bottomrule
   \end{tabular}
 \end{frame}
@@ -252,9 +252,9 @@
     \begin{column}{0.44\textwidth}
       \centering
       \begin{tikzpicture}[
-        b/.style={draw=brandblue,fill=bgsoft,rounded corners=3pt,minimum width=4.5cm,minimum height=0.72cm,align=center,font=\scriptsize\bfseries,line width=0.85pt},
-        ar/.style={-{Stealth[length=2mm]},line width=1pt,draw=brandgreen}
-      ]
+          b/.style={draw=brandblue,fill=bgsoft,rounded corners=3pt,minimum width=4.5cm,minimum height=0.72cm,align=center,font=\scriptsize\bfseries,line width=0.85pt},
+          ar/.style={-{Stealth[length=2mm]},line width=1pt,draw=brandgreen}
+        ]
         \node[b] (f1) at (0,0) {Fuente Central 12V DC / 10A};
         \node[b,draw=brandamber] (f2) at (0,-1.05) {Regulador LM2596 ($12\text{ V} \rightarrow 5.0\text{ V}$)};
         \node[b,draw=brandgreen] (f3) at (0,-2.1) {Optoacoplador: Lógica $3.3\text{ V}$ $\parallel$ Bobina $5\text{ V}$};
@@ -363,9 +363,9 @@
         \item \textbf{Sobrecorriente $>1.80\text{ A}$:} corte inmediato.
         \item \textbf{Subtensión $<10.50\text{ V}$:} alerta amarilla.
         \item \textbf{Anomalía estadística:}
-          \[
-            Z_V = \frac{|V - 12.0|}{0.35} > 3.0
-          \]
+              \[
+                Z_V = \frac{|V - 12.0|}{0.35} > 3.0
+              \]
       \end{itemize}
     \end{column}
     \begin{column}{0.60\textwidth}
@@ -437,7 +437,7 @@
         \item \textbf{Aislamiento JD-VCC} eliminó fallas eléctricas.
         \item \textbf{ESP-NOW + MQTT} desacopló los sensores.
         \item \textbf{FedAvg} entrenó con privacidad total.
-        \item \textbf{Futuro:} PCB KiCad, TinyML y Solar.
+        \item \textbf{Futuro:} PCB KiCad, TinyML.
       \end{itemize}
     \end{column}
     \begin{column}{0.41\textwidth}
@@ -467,8 +467,8 @@
     {\large\color{inkmuted}¿Preguntas o comentarios del jurado?}\\[14pt]
     \begin{tikzpicture}
       \node[fill=bgsoft,draw=brandblue!40,line width=0.8pt,rounded corners=4pt,
-            inner xsep=14pt,inner ysep=6pt,font=\small\bfseries,text=inkdark]
-        {Owen Mora $\cdot$ Angelo Charris $\cdot$ Braulio Ribón $\cdot$ Manuel Pertuz $\cdot$ Milton Sánchez};
+        inner xsep=14pt,inner ysep=6pt,font=\small\bfseries,text=inkdark]
+      {Owen Mora $\cdot$ Angelo Charris $\cdot$ Braulio Ribón $\cdot$ Manuel Pertuz $\cdot$ Milton Sánchez};
     \end{tikzpicture}
   \end{center}
 \end{frame}

@@ -24,13 +24,13 @@
 #define STATION_NAME    "station_a"
 
 // Credenciales Wi-Fi (Conectado a la misma red actual del PC o Hotspot iPhone)
-#define WIFI_SSID       "WIFI_UCC_ESTUDIANTES"
-#define WIFI_PASSWORD   "Estudiantes.2026*"
+#define WIFI_SSID       "TU_SSID"
+#define WIFI_PASSWORD   "TU_PASSWOR"
 #define WIFI_SSID_ALT   "iPhone Owen"
 #define WIFI_PASS_ALT   "0864297531"
 
-// IP local del PC que ejecuta Docker (192.168.10.78 en WIFI_UCC_ESTUDIANTES, 172.20.10.2 en iPhone Owen)
-#define MQTT_BROKER_IP     "192.168.10.78"
+// IP local del PC que ejecuta Docker (10.128.217.64 en TU_SSID, 172.20.10.2 en iPhone Owen)
+#define MQTT_BROKER_IP     "10.128.217.64"
 #define MQTT_BROKER_IP_ALT "172.20.10.2"
 #define MQTT_BROKER_PORT   1884
 

@@ -10,15 +10,10 @@ services:
       dockerfile: Dockerfile
     container_name: arceus_mosquitto
     restart: unless-stopped
-    ports:
-      - "${MOSQUITTO_PORT:-1883}:1883"
-      - "1884:1883"
-      - "9001:9001"
+    network_mode: host
     volumes:
       - mosquitto_data:/mosquitto/data
       - mosquitto_log:/mosquitto/log
-    networks:
-      - arceus_net
     healthcheck:
       test: ["CMD-SHELL", "mosquitto_sub -t '$$SYS/#' -C 1 -i healthcheck -u '' -P '' || exit 0"]
       interval: 10s
@@ -34,17 +29,16 @@ services:
       dockerfile: Dockerfile
     container_name: arceus_collector
     restart: unless-stopped
+    network_mode: host
     command: ["python", "main.py"]
     environment:
-      - MQTT_BROKER_HOST=mosquitto
+      - MQTT_BROKER_HOST=127.0.0.1
       - MQTT_BROKER_PORT=1883
       - ARCEUS_DATA_DIR=/app/data
     volumes:
       - arceus_data:/app/data
     depends_on:
       - mosquitto
-    networks:
-      - arceus_net
 
   # -------------------------------------------------------------
   # 3. Streamlit Operations Dashboard & Federated Learning UI
@@ -55,19 +49,16 @@ services:
       dockerfile: Dockerfile
     container_name: arceus_dashboard
     restart: unless-stopped
+    network_mode: host
     command: ["streamlit", "run", "dashboard/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
     environment:
-      - MQTT_BROKER_HOST=mosquitto
+      - MQTT_BROKER_HOST=127.0.0.1
       - MQTT_BROKER_PORT=1883
       - ARCEUS_DATA_DIR=/app/data
-    ports:
-      - "8501:8501"
     volumes:
       - arceus_data:/app/data
     depends_on:
       - mosquitto
-    networks:
-      - arceus_net
 
 networks:
   arceus_net:
